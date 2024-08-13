@@ -1,4 +1,6 @@
 import { db } from "@/app/_lib/prisma"
+import { PrismaClient, Prisma } from "@prisma/client"
+import { DefaultArgs } from "@prisma/client/runtime/library"
 import NextAuth from "next-auth"
 import { Adapter } from "next-auth/adapters"
 import GoogleProvider from "next-auth/providers/google"
@@ -14,3 +16,8 @@ const handler = NextAuth({
 })
 
 export { handler as GET, handler as POST }
+function PrismaAdapter(
+  db: PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>,
+): Adapter {
+  throw new Error("Function not implemented.")
+}
